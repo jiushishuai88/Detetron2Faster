@@ -1,0 +1,19 @@
+_BASE_: "../Base-RCNN-FPN_CUSTOM.yaml"
+MODEL:
+  WEIGHTS: "./pthpkl/model_final.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 7
+    BATCH_SIZE_PER_IMAGE: 512
+SOLVER:
+  STEPS: (60000, 80000,150000)
+  MAX_ITER: 200000
+  IMS_PER_BATCH: 12
+  BASE_LR: 0.0001
+DATASETS:
+  TRAIN: ("Leucorrhea_train",)
+  TEST: ("Leucorrhea_val",)
+DATALOADER:
+  NUM_WORKERS: 8
